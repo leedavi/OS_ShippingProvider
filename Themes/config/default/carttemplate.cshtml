@@ -1,0 +1,47 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
+@using NBrightCore.common
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_ShippingProvider/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+
+@{
+var info = (NBrightInfo)Model.List.First();
+}
+
+<div class="form-horizontal dnnForm os_shippingprovider_shipdata">
+
+    <input id="uilang" type="hidden" value="@Model.Lang" />
+    <input id="OS_ShippingProvideraddress" type="hidden" value="" />
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-12">
+                @RadioButtonList(info, "genxml/radiobuttonlist/list", "1,2,3,4", "aaaa,bbbbb,ccccccccccc,ddddd", "class='os_shippingprovider_pickup'", info.GetXmlProperty("genxml/pickuppointref"))
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    
+    $('.os_shippingprovider_pickup').unbind();
+    $('.os_shippingprovider_pickup').change(function () {
+        var selectedVal = "";
+        var selected = $(".os_shippingprovider_pickup input[type='radio']:checked");
+        if (selected.length > 0) {
+            selectedVal = selected.val();
+        }
+        alert(selectedVal);
+        $('#OS_ShippingProvideraddress').val(selectedVal);
+        //$('.processing').show();
+        //nbxget('os_shippingprovider_getcarttotals', '.os_shippingprovider_shipdata', '.checkouttotals');
+    });    
+
+</script>

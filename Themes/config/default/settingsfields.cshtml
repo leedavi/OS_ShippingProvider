@@ -1,0 +1,61 @@
+@inherits NBrightBuy.render.NBrightBuyRazorTokens<NBrightDNN.NBrightRazor>
+@using System.Linq
+@using DotNetNuke.Common
+@using DotNetNuke.Entities.Portals
+@using DotNetNuke.Entities.Users
+@using NBrightCore.common
+@using NBrightDNN
+@using Nevoweb.DNN.NBrightBuy.Components
+
+@AddMetaData("resourcepath", "/DesktopModules/NBright/OS_ShippingProvider/App_LocalResources")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/App_LocalResources/")
+@AddMetaData("resourcepath", "/DesktopModules/NBright/NBrightBuy/Providers/ShippingProvider/App_LocalResources/")
+
+@{
+var info = (NBrightInfo)Model.List.First();
+}
+
+<div class="form-horizontal dnnForm">
+
+        <input id="itemid" type="hidden" value="@info.ItemID"/>
+        <input id="uilang" type="hidden" value="@Model.Lang"/>
+        <input id="nextlang" type="hidden" value="@Model.Lang" />
+
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3>DPD France</h3>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("General.Name")</label>
+            <div class="col-sm-5">
+                @NBrightTextBox(info, "genxml/lang/genxml/textbox/name", "maxlength='150'", "DPD France")
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("OS_ShippingProvider.key")</label>
+            <div class="col-sm-5">
+                @NBrightTextBox(info, "genxml/textbox/key", "maxlength='90'", "")
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("OS_ShippingProvider.limit")</label>
+            <div class="col-sm-5">
+                @NBrightTextBox(info, "genxml/textbox/limit", "maxlength='10'", "20")
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@ResourceKey("Shipping.Range")</label>
+            <div class="col-sm-5">
+                @NBrightTextArea(info, "genxml/textbox/shiprange", "rows='8' class='form-control' ", "0-20=0")
+            </div>
+        </div>
+
+    </div>
+
+
+    </div>
